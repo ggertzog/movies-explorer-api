@@ -6,10 +6,7 @@ const { RESPONSE_CODE } = require('../utils/constants');
 module.exports.getSavedMovies = async ( req, res, next ) => {
   try{
     const movies = await movieModel.find({ owner: req.user._id });
-    if(!movies.length) {
-      return res.satus(RESPONSE_CODE.NOT_FOUND).send({ message: 'Список ваших фильмов пуст'});
-    }
-      return res.send(movies);
+    return res.status(RESPONSE_CODE.OK).send(movies);
   } catch (err) {
     return next(err);
   }
