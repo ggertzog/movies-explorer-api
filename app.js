@@ -10,10 +10,11 @@ const auth = require('./middlewares/auth');
 const { signinValidate, signupValidate } = require('./middlewares/requestValidation');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { centralErrorHandler } = require('./middlewares/centralErrorHandler');
+const { DEV_DB_ADDRESS } = require('./utils/config');
 
-const { PORT, DB_ADDRESS } = process.env;
+const { PORT = 3000, DB_ADDRESS, NODE_ENV } = process.env;
 
-mongoose.connect(DB_ADDRESS);
+mongoose.connect(NODE_ENV === 'production' ? DB_ADDRESS : DEV_DB_ADDRESS);
 
 const app = express();
 
