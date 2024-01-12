@@ -14,7 +14,8 @@ module.exports.getSavedMovies = async ( req, res, next ) => {
 
 module.exports.createMovieCard = async (req, res, next) => {
   try{
-    const { country, director, duration, year, description, image, trailerLink, thumbnail, owner, movieId, nameRU, nameEN } = req.body;
+    const { country, director, duration, year, description, image, trailerLink, thumbnail, movieId, nameRU, nameEN } = req.body;
+    const owner = req.user._id;
     const movie = await movieModel.create({
       country, director, duration, year, description, image, trailerLink, thumbnail, owner, movieId, nameRU, nameEN
     });
