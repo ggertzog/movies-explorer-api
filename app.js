@@ -18,7 +18,11 @@ mongoose.connect(NODE_ENV === 'production' ? DB_ADDRESS : DEV_DB_ADDRESS);
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:3000", "https://romamovie.nomoredomainsmonster.ru"],
+  credentials: true,
+  maxAge: 30,
+}));
 
 app.use(express.json());
 
