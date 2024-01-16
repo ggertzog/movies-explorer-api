@@ -39,4 +39,4 @@ app.use(errors());
 
 app.use(centralErrorHandler);
 
-app.listen(PORT)
+app.listen(PORT);
